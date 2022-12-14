@@ -1,0 +1,41 @@
+<!--  this is scriptlet tag for control flow statements we must need to give this scriptlet tag for every control flow -->
+<!-- statement.  -->
+<!-- <% if(listTitle==="sunday" || listTitle==="saturday" ){ %> -->
+<!-- <h1 style="color: violet;">It's a <%= listTitle %>! Todo List</h1> -->
+<!-- <% }else{ %> -->
+<!-- <h1 style="color: green;">It's a <%= listTitle %>! Todo List</h1> -->
+<!-- <% } %> -->
+<%- include('header'); -%>
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
+        </h1>
+    </div>
+
+    <div class="box">
+
+
+        <form action="/" method="post" class="tasks">
+            <input type="text" name="newTask" placeholder="add task" required>
+            <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        </form>
+
+        <!-- we are print tasks by loop through every task in the userTasks array-->
+        <% userTask.forEach(e=>{ %>
+            <form action="/delete" method="post">
+                <div class="tasks">
+                    <input type="checkbox" name="checkbox" value="<%=e._id %>" onchange="this.form.submit()">
+                    <p>
+                        <%= e.name %>
+                    </p>
+
+                </div>
+                <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+            </form>
+
+            <% }) %>
+
+
+    </div>
+
+    <%- include('footer'); -%>
